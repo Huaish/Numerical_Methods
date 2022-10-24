@@ -1,0 +1,15 @@
+PIN
+
+BUG
+
+FIXME
+
+QUESTION
+
+COMMENT
+
+TODO
+
+[ ]
+
+[x]

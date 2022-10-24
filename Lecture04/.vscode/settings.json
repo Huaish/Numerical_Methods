@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "ostream": "cpp",
+        "vector": "cpp",
+        "iostream": "cpp"
+    },
+    "code-runner.executorMap": {
+        "cpp": "g++ $fullFileName && ./a.out"
+    },
+    "editor.formatOnSave": false
+}
