@@ -32,30 +32,25 @@ aij = 0 if |i-j| >= 2
 bT = [2,3,4,5,6,7,8,9,10,11]
 */
 
-#include <iostream>
 #include <cmath>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
-int main()
-{
+int main() {
     const int row = 10, col = 10;
     double A[row][col] = {0};
     double L_plus_U[row][col] = {0};
 
-    for (int i = 0; i < row; i++)
-    {
-        for (int j = 0; j < col; j++)
-        {
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
             if (i == j)
                 A[i][j] = -4;
-            else if (abs(i - j) == 1)
-            {
+            else if (abs(i - j) == 1) {
                 A[i][j] = 2;
                 L_plus_U[i][j] = 2;
-            }
-            else
-            {
+            } else {
                 A[i][j] = 0;
                 L_plus_U[i][j] = 0;
             }
@@ -66,35 +61,28 @@ int main()
     double x0[row] = {0};
     double x1[row] = {0};
 
-    while (true)
-    {
+    while (true) {
         // (L+U)x0
         double tmp[row] = {0};
-        for (int i = 0; i < row; i++)
-        {
-            for (int j = 0; j < col; j++)
-            {
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 tmp[i] += L_plus_U[i][j] * x0[j];
             }
         }
 
         // b - (L+U)x0
-        for (int i = 0; i < row; i++)
-        {
+        for (int i = 0; i < row; i++) {
             tmp[i] = b[i] - tmp[i];
         }
 
         // D^-1(b - (L+U)x0)
-        for (int i = 0; i < row; i++)
-        {
+        for (int i = 0; i < row; i++) {
             x1[i] = tmp[i] / A[i][i];
         }
 
         bool stop = true;
-        for (int i = 0; i < row; i++)
-        {
-            if (abs(x1[i] - x0[i]) > 1e-6)
-            {
+        for (int i = 0; i < row; i++) {
+            if (abs(x1[i] - x0[i]) > 1e-6) {
                 stop = false;
                 break;
             }
@@ -103,14 +91,12 @@ int main()
         if (stop)
             break;
 
-        for (int i = 0; i < row; i++)
-        {
+        for (int i = 0; i < row; i++) {
             x0[i] = x1[i];
         }
     }
 
-    for (int i = 0; i < row; i++)
-    {
+    for (int i = 0; i < row; i++) {
         cout << "x" << i + 1 << " = " << x1[i] << endl;
     }
 
