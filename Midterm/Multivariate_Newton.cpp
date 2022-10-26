@@ -52,57 +52,57 @@ Example:
 ( 4, -9)        ( 5,  0)
 */
 
-#include<iostream>
-#include<cmath>
+#include <cmath>
+#include <iostream>
 
 using namespace std;
 
 int _x1 = -8, _y1 = -4, _x2 = 6, _y2 = 9, _x3 = 4, _y3 = -9;
 
-double f1( double h, double k, double r ) {
-    return pow(_x1 - h, 2) + pow(_y1 - k, 2) - r*r;
+double f1(double h, double k, double r) {
+    return pow(_x1 - h, 2) + pow(_y1 - k, 2) - r * r;
 }
-double f2( double h, double k, double r ) {
-    return pow(_x2 - h, 2) + pow(_y2 - k, 2) - r*r;
+double f2(double h, double k, double r) {
+    return pow(_x2 - h, 2) + pow(_y2 - k, 2) - r * r;
 }
-double f3( double h, double k, double r ) {
-    return pow(_x3 - h, 2) + pow(_y3 - k, 2) - r*r;
+double f3(double h, double k, double r) {
+    return pow(_x3 - h, 2) + pow(_y3 - k, 2) - r * r;
 }
 
 double df1_dh(double h, double k, double r) {
-    return -2*(_x1-h);
+    return -2 * (_x1 - h);
 }
 
 double df1_dk(double h, double k, double r) {
-    return -2*(_y1-k);
+    return -2 * (_y1 - k);
 }
 
 double df1_dr(double h, double k, double r) {
-    return -2*r;
+    return -2 * r;
 }
 
 double df2_dh(double h, double k, double r) {
-    return -2*(_x2-h);
+    return -2 * (_x2 - h);
 }
 
 double df2_dk(double h, double k, double r) {
-    return -2*(_y2-k);
+    return -2 * (_y2 - k);
 }
 
 double df2_dr(double h, double k, double r) {
-    return -2*r;
+    return -2 * r;
 }
 
 double df3_dh(double h, double k, double r) {
-    return -2*(_x3-h);
+    return -2 * (_x3 - h);
 }
 
 double df3_dk(double h, double k, double r) {
-    return -2*(_y3-k);
+    return -2 * (_y3 - k);
 }
 
 double df3_dr(double h, double k, double r) {
-    return -2*r;
+    return -2 * r;
 }
 
 // function pointer 2D array for f1_h, f1_k, f1_r, f2_h, f2_k, f2_r, f3_h, f3_k, f3_r
@@ -121,25 +121,35 @@ int main() {
     double F[n];
     double h = 1, k = 1, r = 3;
 
-    cin >> _x1 >> _y1 >> _x2 >> _y2 >> _x3 >> _y3;
+    cout << "輸入三點座標：" << endl;
+    cout << "x1 = ";
+    cin >> _x1;
+    cout << "y1 = ";
+    cin >> _y1;
+    cout << "x2 = ";
+    cin >> _x2;
+    cout << "y2 = ";
+    cin >> _y2;
+    cout << "x3 = ";
+    cin >> _x3;
+    cout << "y3 = ";
+    cin >> _y3;
 
-    while ( true ) {
-
+    while (true) {
         // solve Df(xk)s = -F(xk)
 
         // set F and D
-        for ( int i = 0; i < n; i++ ) {
-            for ( int j = 0; j < n; j++ ) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 D[i][j] = d[i][j](h, k, r);
             }
             F[i] = -f[i](h, k, r);
         }
 
-
-        for ( int j = 0; j < n; j++ ) {
-            for ( int i = j+1; i < n; i++ ) {
+        for (int j = 0; j < n; j++) {
+            for (int i = j + 1; i < n; i++) {
                 double multiple = D[i][j] / D[j][j];
-                for ( int k = 0; k < n; k++ ) {
+                for (int k = 0; k < n; k++) {
                     D[i][k] -= D[j][k] * multiple;
                 }
 
@@ -147,17 +157,16 @@ int main() {
             }
         }
 
-        for ( int j = n-1; j > 0; j-- ) {
-            for ( int i = j-1; i >= 0; i-- ) {
-                F[i] -= F[j] * (D[i][j]/D[j][j]);
+        for (int j = n - 1; j > 0; j--) {
+            for (int i = j - 1; i >= 0; i--) {
+                F[i] -= F[j] * (D[i][j] / D[j][j]);
             }
         }
 
-        
         bool stop = true;
-        for ( int i = 0; i < n; i++ )
-            if ( abs(F[i]/D[i][i]) > 1e-6 ) stop = false;
-        if ( stop ) break;
+        for (int i = 0; i < n; i++)
+            if (abs(F[i] / D[i][i]) > 1e-6) stop = false;
+        if (stop) break;
 
         h += F[0] / D[0][0];
         k += F[1] / D[1][1];
@@ -165,7 +174,6 @@ int main() {
     }
 
     printf("%g\n%g\n%g\n", h, k, r);
-
 
     return 0;
 }
