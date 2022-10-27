@@ -3,7 +3,7 @@ Jacobi method
 A form of fixed-point iteration
 
 Convergence is guaranteed if the matrix A is diagonally dominant
-Strictly diagonally dominant: |a_ii| > sum_{j != i} |a_ij|
+Strictly diagonally dominant: |a_ii| >= sum_{j != i} |a_ij|
 
 Method
 Ax = b
