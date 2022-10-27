@@ -23,22 +23,25 @@ Properties:
 
 // ans = 3.5214
 
-#include<iostream>
-#include<cmath>
+#include <cmath>
+#include <iostream>
 
 using namespace std;
 
-double f( double x ) {
-    return x - pow(x, (1.0/3.0)) - 2;
+double f(double x) {
+    return x - pow(x, (1.0 / 3.0)) - 2;
 }
 
 int main() {
     double a = 3.0, b = 4.0;
 
-    while ( abs(a-b) > 1e-6 ) {
-        double m = (a+b)/2.0;
-        if ( f(m) < 0 ) a = m;
-        else b = m;
+    if (f(a) > f(b)) swap(a, b);
+    while (abs(a - b) > 1e-6) {
+        double m = (a + b) / 2.0;
+        if (f(m) < 0)
+            a = m;
+        else
+            b = m;
     }
 
     cout << a << endl;
