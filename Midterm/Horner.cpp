@@ -4,8 +4,8 @@
 // x = 1.0001
 // ans = 51.1277
 
-#include<iostream>
-#include<cmath>
+#include <cmath>
+#include <iostream>
 
 using namespace std;
 
@@ -14,7 +14,7 @@ int main() {
     double x_pow = 1;
     double ans = 0;
 
-    for ( int i = 0; i <= 50; i++ ) {
+    for (int i = 0; i <= 50; i++) {
         ans += x_pow;
         x_pow *= x;
     }

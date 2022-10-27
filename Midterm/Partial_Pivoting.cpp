@@ -15,29 +15,28 @@ Partial pivoting:
 */
 
 /*
-A = 
+A =
 0   0   -1  1
 1   1   -1  2
 -1  -1  2   0
 1   2   0   2
 */
 
-#include<iostream>
-#include<cmath>
-#include<string>
-#include<vector>
+#include <cmath>
+#include <iostream>
+#include <string>
+#include <vector>
 
 using namespace std;
 
 int main() {
     const int row = 4, col = 4;
     double A[row][col] = {
-        {1,1.0/2.0,1.0/3.0,1.0/4.0},
-        {1.0/2.0,1.0/3.0,1.0/4.0, 1.0/5.0},
-        {1.0/3.0,1.0/4.0, 1.0/5.0, 1.0/6.0},
-        {1.0/4.0, 1.0/5.0, 1.0/6.0, 1.0/7.0}
-    };
-    double b[row] = {1.0/6.0,1.0/7.0,1.0/8.0,1.0/9.0};
+        {1, 1.0 / 2.0, 1.0 / 3.0, 1.0 / 4.0},
+        {1.0 / 2.0, 1.0 / 3.0, 1.0 / 4.0, 1.0 / 5.0},
+        {1.0 / 3.0, 1.0 / 4.0, 1.0 / 5.0, 1.0 / 6.0},
+        {1.0 / 4.0, 1.0 / 5.0, 1.0 / 6.0, 1.0 / 7.0}};
+    double b[row] = {1.0 / 6.0, 1.0 / 7.0, 1.0 / 8.0, 1.0 / 9.0};
     // double A[row][col] = {
     //     {0,0,-1,1},
     //     {1,1,-1,2},
@@ -60,26 +59,25 @@ int main() {
 
     // double b[row];
     // for ( int i = 0; i < row; i++ ) cin >> b[i];
-    
 
     // Elimination Step
-    for ( int j = 0; j < col; j++ ) {
+    for (int j = 0; j < col; j++) {
         int p = j;
-        for ( int k = j+1; k < row; k++ ) {
-            if ( A[k][j] > A[p][j] ) p = k;
+        for (int k = j + 1; k < row; k++) {
+            if (A[k][j] > A[p][j]) p = k;
         }
 
-        if ( p != j ) {
-            for ( int k = 0; k < col; k++ ) {
+        if (p != j) {
+            for (int k = 0; k < col; k++) {
                 swap(A[p][k], A[j][k]);
             }
             swap(b[p], b[j]);
             swap(x[p], x[j]);
         }
 
-        for ( int i = j+1; i < row; i++ ) {
+        for (int i = j + 1; i < row; i++) {
             double multiple = A[i][j] / A[j][j];
-            for ( int k = 0; k < col; k++ ) {
+            for (int k = 0; k < col; k++) {
                 A[i][k] -= A[j][k] * multiple;
             }
             b[i] -= b[j] * multiple;
@@ -87,23 +85,21 @@ int main() {
     }
 
     cout << "------------- Matrix U -------------" << endl;
-    for ( int i = 0; i < row; i++ ) {
-        for ( int j = 0; j < col; j++ ) {
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
             printf("%g\t", A[i][j]);
         }
         cout << endl;
     }
 
     // (Backward) Substitution step
-    for ( int j = col-1; j > 0; j-- ) {
-        for ( int i = j-1; i >= 0; i-- ) {
+    for (int j = col - 1; j > 0; j--) {
+        for (int i = j - 1; i >= 0; i--) {
             b[i] -= b[j] * (A[i][j] / A[j][j]);
         }
     }
     cout << "------------ Solution X ------------" << endl;
-    for ( int i = 0; i < row; i++ ) {
-        printf("%s = %g\n", x[i].c_str(), b[i]/A[i][i]);
+    for (int i = 0; i < row; i++) {
+        printf("%s = %g\n", x[i].c_str(), b[i] / A[i][i]);
     }
-
-
 }

@@ -27,8 +27,8 @@ y + 2z = 1
 8x + 5y + 3w = 0
 */
 
-#include<iostream>
-#include<cmath>
+#include <cmath>
+#include <iostream>
 
 using namespace std;
 
@@ -46,17 +46,17 @@ int main() {
     int row = 4, col = 4;
     cin >> row >> col;
     double A[row][col];
-    for ( int i = 0; i < row; i++ )
-        for ( int j = 0; j < col; j++ )
+    for (int i = 0; i < row; i++)
+        for (int j = 0; j < col; j++)
             cin >> A[i][j];
     double b[row];
-    for ( int i = 0; i < row; i++ ) cin >> b[i];
-    
+    for (int i = 0; i < row; i++) cin >> b[i];
+
     // Elimination Step
-    for ( int j = 0; j < col; j++ ) {
-        for ( int i = j+1; i < row; i++ ) {
+    for (int j = 0; j < col; j++) {
+        for (int i = j + 1; i < row; i++) {
             double multiple = A[i][j] / A[j][j];
-            for ( int k = 0; k < col; k++ ) {
+            for (int k = 0; k < col; k++) {
                 A[i][k] -= A[j][k] * multiple;
             }
             b[i] -= b[j] * multiple;
@@ -64,23 +64,21 @@ int main() {
     }
 
     cout << "------------- Matrix U -------------" << endl;
-    for ( int i = 0; i < row; i++ ) {
-        for ( int j = 0; j < col; j++ ) {
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
             printf("%g\t", A[i][j]);
         }
         printf("| %g\n", b[i]);
     }
 
     // (Backward) Substitution step
-    for ( int j = col-1; j > 0; j-- ) {
-        for ( int i = j-1; i >= 0; i-- ) {
+    for (int j = col - 1; j > 0; j--) {
+        for (int i = j - 1; i >= 0; i--) {
             b[i] -= b[j] * (A[i][j] / A[j][j]);
         }
     }
     cout << "------------ Solution X ------------" << endl;
-    for ( int i = 0; i < row; i++ ) {
-        printf("x%i=%g\n", i, b[i]/A[i][i]);
+    for (int i = 0; i < row; i++) {
+        printf("x%i=%g\n", i, b[i] / A[i][i]);
     }
-
-
 }

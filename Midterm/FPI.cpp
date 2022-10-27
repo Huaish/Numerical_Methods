@@ -17,13 +17,13 @@ else FPI faster
 // x^3 = 2x + 2
 // ans = 1.76929
 
-#include<iostream>
-#include<cmath>
+#include <cmath>
+#include <iostream>
 
 using namespace std;
 
-double g( double x ) {
-    return pow(2*x+2, 1.0/3.0);
+double g(double x) {
+    return pow(2 * x + 2, 1.0 / 3.0);
 }
 
 int main() {
@@ -31,7 +31,7 @@ int main() {
     do {
         swap(x0, x1);
         x1 = g(x0);
-    }while ( abs(x1-x0) > 1e-6);
+    } while (abs(x1 - x0) > 1e-6);
 
     cout << x1 << endl;
     return 0;

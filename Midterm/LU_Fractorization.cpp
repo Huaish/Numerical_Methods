@@ -40,75 +40,77 @@ y + 2z = 1
 8x + 5y + 3w = 0
 */
 
-#include<iostream>
-#include<cmath>
+#include <cmath>
+#include <iostream>
 
 using namespace std;
 
 int main() {
     const int row = 4, col = 4;
     double A[row][col] = {
-        {2,1,0,0},
-        {0,1,2,0},
-        {2,4,5,1},
-        {8,5,0,3}
-    };
+        {2, 1, 0, 0},
+        {0, 1, 2, 0},
+        {2, 4, 5, 1},
+        {8, 5, 0, 3}};
 
-    double b[row] = {1,1,2,0};
+    double b[row] = {1, 1, 2, 0};
 
     // Elimination Step
-    for ( int j = 0; j < col; j++ ) {
-        for ( int i = j+1; i < row; i++ ) {
+    for (int j = 0; j < col; j++) {
+        for (int i = j + 1; i < row; i++) {
             double multiple = A[i][j] / A[j][j];
             A[i][j] = A[i][j] / A[j][j];
-            for ( int k = j+1; k < col; k++ ) {
+            for (int k = j + 1; k < col; k++) {
                 A[i][k] -= A[j][k] * multiple;
             }
         }
     }
 
     cout << "------------- Matrix L -------------" << endl;
-    for ( int i = 0; i < row; i++ ) {
-        for ( int j = 0; j < col; j++ ) {
-            if ( i == j ) printf("1\t");
-            else if ( i > j )
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if (i == j)
+                printf("1\t");
+            else if (i > j)
                 printf("%g\t", A[i][j]);
-            else printf("0\t");
+            else
+                printf("0\t");
         }
         cout << endl;
     }
 
     cout << "------------- Matrix U -------------" << endl;
-    for ( int i = 0; i < row; i++ ) {
-        for ( int j = 0; j < col; j++ ) {
-            if ( i <= j ) printf("%g\t", A[i][j]);
-            else printf("0\t");
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if (i <= j)
+                printf("%g\t", A[i][j]);
+            else
+                printf("0\t");
         }
         printf("\n");
     }
 
     // Solve Lc = b for c
-    for ( int j = 0; j < col; j++ ) {
-        for ( int i = j+1; i < row; i++ ) {
+    for (int j = 0; j < col; j++) {
+        for (int i = j + 1; i < row; i++) {
             b[i] -= b[j] * A[i][j];
         }
     }
 
     cout << "------------ Solution c ------------" << endl;
-    for ( int i = 0; i < row; i++ ) {
+    for (int i = 0; i < row; i++) {
         printf("c%i = %g\n", i, b[i]);
     }
 
-    //Solve Ux = c for x
-    for ( int j = col-1; j > 0; j-- ) {
-        for ( int i = j-1; i >= 0; i-- ) {
-            b[i] -= b[j] * (A[i][j]/A[j][j]);
+    // Solve Ux = c for x
+    for (int j = col - 1; j > 0; j--) {
+        for (int i = j - 1; i >= 0; i--) {
+            b[i] -= b[j] * (A[i][j] / A[j][j]);
         }
     }
 
     cout << "------------ Solution x ------------" << endl;
-    for ( int i = 0; i < row; i++ ) {
-        printf("x%i = %g\n", i, b[i]/A[i][i]);
+    for (int i = 0; i < row; i++) {
+        printf("x%i = %g\n", i, b[i] / A[i][i]);
     }
-
 }
