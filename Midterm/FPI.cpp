@@ -23,7 +23,7 @@ else FPI faster
 using namespace std;
 
 double g(double x) {
-    return pow(2 * x + 2, 1.0 / 3.0);
+    return ((1 - x) * (3 + x)) / ((1 + x) * (3.06));
 }
 
 int main() {
@@ -31,7 +31,7 @@ int main() {
     do {
         swap(x0, x1);
         x1 = g(x0);
-    } while (abs(x1 - x0) > 1e-6);
+    } while (abs(x1 - x0) > 1e-10);
 
     cout << x1 << endl;
     return 0;

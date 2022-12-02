@@ -29,11 +29,11 @@ Properties:
 using namespace std;
 
 double f(double x) {
-    return x - pow(x, (1.0 / 3.0)) - 2;
+    return pow(x, 3) + 4 * x * x - 10;
 }
 
 int main() {
-    double a = 3.0, b = 4.0;
+    double a = 1.0, b = 2.0;
 
     if (f(a) > f(b)) swap(a, b);
     while (abs(a - b) > 1e-6) {

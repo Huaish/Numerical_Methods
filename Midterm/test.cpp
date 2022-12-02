@@ -4,49 +4,49 @@
 using namespace std;
 
 double f1(double x1, double x2, double x3) {
-    return pow(x1, 3) + x1 * x1 * x2 - x1 * x3 + 6;
+    return sin(x1) + x2 * x2 + log(x3) - 7;
 }
 double f2(double x1, double x2, double x3) {
-    return exp(x1) + exp(x2) - x3;
+    return 3 * x1 + 2 * x2 - pow(x3, 3) + 1;
 }
 double f3(double x1, double x2, double x3) {
-    return x2 * x2 - 2 * x1 * x3 - 4;
+    return x1 + x2 + x3 - 5;
 }
 
 double df1_dx1(double x1, double x2, double x3) {
-    return 3 * pow(x1, 2) + 2 * x1 * x2 - x3;
+    return cos(x1);
 }
 
 double df1_dx2(double x1, double x2, double x3) {
-    return x1 * x1;
-}
-
-double df1_dx3(double x1, double x2, double x3) {
-    return -x1;
-}
-
-double df2_dx1(double x1, double x2, double x3) {
-    return exp(x1);
-}
-
-double df2_dx2(double x1, double x2, double x3) {
-    return exp(x2);
-}
-
-double df2_dx3(double x1, double x2, double x3) {
-    return -1;
-}
-
-double df3_dx1(double x1, double x2, double x3) {
-    return -2 * x3;
-}
-
-double df3_dx2(double x1, double x2, double x3) {
     return 2 * x2;
 }
 
+double df1_dx3(double x1, double x2, double x3) {
+    return 1.0 / x3;
+}
+
+double df2_dx1(double x1, double x2, double x3) {
+    return 3;
+}
+
+double df2_dx2(double x1, double x2, double x3) {
+    return 2;
+}
+
+double df2_dx3(double x1, double x2, double x3) {
+    return -3 * x3 * x3;
+}
+
+double df3_dx1(double x1, double x2, double x3) {
+    return 1;
+}
+
+double df3_dx2(double x1, double x2, double x3) {
+    return 1;
+}
+
 double df3_dx3(double x1, double x2, double x3) {
-    return -2 * x1;
+    return 1;
 }
 
 // function pointer 2D array for f1_h, f1_k, f1_r, f2_h, f2_k, f2_r, f3_h, f3_k, f3_r
@@ -63,7 +63,7 @@ int main() {
     const int n = 3;
     double D[n][n];
     double F[n];
-    double x1 = -1, x2 = -2, x3 = 1;
+    double x1 = 0, x2 = 2, x3 = 2;
 
     while (true) {
         // solve Df(xk)s = -F(xk)

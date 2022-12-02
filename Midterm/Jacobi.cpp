@@ -46,10 +46,10 @@ int main() {
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++) {
             if (i == j)
-                A[i][j] = -4;
+                A[i][j] = 3;
             else if (abs(i - j) == 1) {
-                A[i][j] = 2;
-                L_plus_U[i][j] = 2;
+                A[i][j] = -1;
+                L_plus_U[i][j] = -1;
             } else {
                 A[i][j] = 0;
                 L_plus_U[i][j] = 0;
@@ -57,7 +57,7 @@ int main() {
         }
     }
 
-    double b[row] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    double b[row] = {2, 1, 1, 1, 1, 1, 1, 1, 1, 2};
     double x0[row] = {0};
     double x1[row] = {0};
 

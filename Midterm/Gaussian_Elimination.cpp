@@ -33,24 +33,30 @@ y + 2z = 1
 using namespace std;
 
 int main() {
-    // const int row = 4, col = 4;
-    // double A[row][col] = {
-    //     {2,1,0,0},
-    //     {0,1,2,0},
-    //     {2,4,5,1},
-    //     {8,5,0,3}
-    // };
+    const int row = 10, col = 10;
+    double A[row][col] = {
+        {3, -1, 0, 0, 0, 0, 0, 0, 0, 0},
+        {-1, 3, -1, 0, 0, 0, 0, 0, 0, 0},
+        {0, -1, 3, -1, 0, 0, 0, 0, 0, 0},
+        {0, 0, -1, 3, -1, 0, 0, 0, 0, 0},
+        {0, 0, 0, -1, 3, -1, 0, 0, 0, 0},
+        {0, 0, 0, 0, -1, 3, -1, 0, 0, 0},
+        {0, 0, 0, 0, 0, -1, 3, -1, 0, 0},
+        {0, 0, 0, 0, 0, 0, -1, 3, -1, 0},
+        {0, 0, 0, 0, 0, 0, 0, -1, 3, -1},
+        {0, 0, 0, 0, 0, 0, 0, 0, -1, 3},
+    };
 
-    // double b[row] = {1,1,2,0};
+    double b[row] = {2, 1, 1, 1, 1, 1, 1, 1, 1, 2};
 
-    int row = 4, col = 4;
-    cin >> row >> col;
-    double A[row][col];
-    for (int i = 0; i < row; i++)
-        for (int j = 0; j < col; j++)
-            cin >> A[i][j];
-    double b[row];
-    for (int i = 0; i < row; i++) cin >> b[i];
+    // int row = 4, col = 4;
+    // cin >> row >> col;
+    // double A[row][col];
+    // for (int i = 0; i < row; i++)
+    //     for (int j = 0; j < col; j++)
+    //         cin >> A[i][j];
+    // double b[row];
+    // for (int i = 0; i < row; i++) cin >> b[i];
 
     // Elimination Step
     for (int j = 0; j < col; j++) {
