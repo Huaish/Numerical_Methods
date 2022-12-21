@@ -2,6 +2,12 @@
     "files.associations": {
         "iostream": "cpp",
         "iosfwd": "cpp",
-        "vector": "cpp"
-    }
+        "vector": "cpp",
+        "__config": "cpp",
+        "__locale": "cpp",
+        "chrono": "cpp",
+        "cstddef": "cpp",
+        "version": "cpp"
+    },
+    "editor.formatOnSave": false
 }
