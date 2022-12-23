@@ -1,5 +1,5 @@
 /*
-QR fractionization of a matrix A
+QR fractionation of a matrix A
 A = [1 2 2; -4 3 2]
 1st: Find the first column of Q and R
     y1 = A1 = [1 2 2]
